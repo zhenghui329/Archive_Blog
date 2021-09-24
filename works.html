@@ -1,0 +1,54 @@
+---
+layout: page
+title: 作品
+---
+<h4>歌曲(歌词、创作背景、相关视频等)、海报和图文创作等</h4>
+
+<h2 class="home-page-heading">专辑</h2>
+
+{% assign falbums = site.albums | where: "featured", "true" %}
+
+{% for album in falbums %}
+  <details>
+    <summary> <h4 class="home-page-heading">{{ album.title}}</h4></summary>
+    {{ album.content }}
+  </details>
+
+{% endfor %}
+
+<div class="post-wrapper">
+  <a href="/allsongs" style="margin-left:1.1rem;"><b>更多……</b></a>
+</div>
+
+<h2>海报</h2>
+{% assign allposters = site.data.posters | sort: 'posterdate' | reverse %}
+<div class="poster-container">
+  {% for poster in allposters limit:4 %}
+      <div class="poster show">
+          <a data-fancybox="gallery" href="/assets/posters/{{poster.postertype}}/{{poster.imgurl}}.jpg" data-caption="{{poster.title}}">
+              <img src="/assets/posters/{{poster.postertype}}/{{poster.imgurl}}-s.jpg" >
+          </a>
+      </div>
+  {% endfor %}
+</div>
+<div class="post-wrapper">
+  <a href="/allposters" style="margin-left:1.1rem;"><b>更多……</b></a>
+</div>
+
+<h2 class="home-page-heading">图文</h2>
+{% assign workposts = site.works | where: "category", "works" | reverse%}
+
+{% for post in workposts limit:10 %}
+    <div class="post-wrapper">
+        <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y" }}</time>
+        <a class="post-link" href="{{ post.url }}" >{{ post.title }}</a>
+    </div>
+{% endfor %}
+<div class="post-wrapper">
+  <a href="/publications" style="margin-left:1.1rem;"><b>更多……</b></a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>

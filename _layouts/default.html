@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% include head.html %}
+<body>
+<div class="container">
+  {% include nav.html %}
+  <hr class="stylish"/>
+  {{ content }}
+</div>
+<footer>
+  <hr class="stylish"/>
+  {% include nav.html %}
+  <div>
+    主题: <a href="https://github.com/abhn/Elementary" target="_blank">Elementary</a>
+    | <a href="/changelog.html">更新记录</a>
+    | <a href='/about'>关于</a>
+    | <a href="/comments.html">留言</a>
+    <br/>
+    <a>{{ site.name }}</a> &copy; 2020-{{ site.time | date: '%Y' }}&nbsp;by&nbsp;&#128692;~&#128022;
+  </div>
+</footer>
+
+{% if site.javascript_enabled %}
+  <script src="/assets/main.js"></script>
+  <script src="/assets/newTab.js"></script>
+  <script data-goatcounter="https://wutiaoreninfo.goatcounter.com/count"
+      async src="//gc.zgo.at/count.js"></script>
+{% endif %}
+
+</body>
+</html>
